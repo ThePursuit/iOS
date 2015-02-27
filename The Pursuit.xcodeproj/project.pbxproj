@@ -10,30 +10,23 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>5269A96142F6998FC0A0E327</key>
+		<key>4991EB6F48D39F5C2AB38F73</key>
 		<dict>
 			<key>fileRef</key>
-			<string>5790A2C54509ABC49A82E186</string>
+			<string>4DDC35D2D9D61D8F396753BB</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Weak</string>
-				</array>
-			</dict>
 		</dict>
-		<key>5790A2C54509ABC49A82E186</key>
+		<key>4DDC35D2D9D61D8F396753BB</key>
 		<dict>
 			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
+			<string>archive.ar</string>
 			<key>includeInIndex</key>
 			<string>0</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>path</key>
-			<string>Pods.framework</string>
+			<string>libPods.a</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
@@ -80,30 +73,6 @@ fi
 			<string>Pods</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B6102A722F030B248E83ACA5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Embed Pods Frameworks</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
 		</dict>
 		<key>BBACD4A86DD6B5436C679BF5</key>
 		<dict>
@@ -280,7 +249,7 @@ fi
 			<key>files</key>
 			<array>
 				<string>CC3C01671A7BABF10071FAEF</string>
-				<string>5269A96142F6998FC0A0E327</string>
+				<string>4991EB6F48D39F5C2AB38F73</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -312,7 +281,6 @@ fi
 				<string>CCE947FE1A7647C200F915CA</string>
 				<string>CCE947FF1A7647C200F915CA</string>
 				<string>CCE948001A7647C200F915CA</string>
-				<string>B6102A722F030B248E83ACA5</string>
 				<string>BC405B74C6F5939D8C34DED4</string>
 			</array>
 			<key>buildRules</key>
@@ -973,7 +941,7 @@ fi
 		<dict>
 			<key>children</key>
 			<array>
-				<string>5790A2C54509ABC49A82E186</string>
+				<string>4DDC35D2D9D61D8F396753BB</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
