@@ -1,13 +1,10 @@
 PODS:
-  - Bolts (1.1.3)
-  - Parse (1.6.3):
-    - Bolts (~> 1.1)
+  - Alamofire (1.1.4)
 
 DEPENDENCIES:
-  - Parse (~> 1.6)
+  - Alamofire (~> 1.1)
 
 SPEC CHECKSUMS:
-  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  Parse: f725f76ef200c5127420690fc6882e57c3813923
+  Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
 
 COCOAPODS: 0.36.0.beta.2
