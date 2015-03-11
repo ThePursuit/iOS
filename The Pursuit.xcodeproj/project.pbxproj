@@ -76,7 +76,6 @@
 		CCE947F91A7647C200F915CA = {
 			isa = PBXGroup;
 			children = (
-				CC3C01661A7BABF10071FAEF /* MapKit.framework */,
 				CCE948041A7647C200F915CA /* The Pursuit */,
 				CCE9481A1A7647C200F915CA /* The PursuitTests */,
 				CCE948031A7647C200F915CA /* Products */,
@@ -135,6 +134,7 @@
 		F165D5AFDB21F3C213E337B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC3C01661A7BABF10071FAEF /* MapKit.framework */,
 				7D1151F8AF1AB5F768DCD75B /* libPods.a */,
 			);
 			name = Frameworks;
