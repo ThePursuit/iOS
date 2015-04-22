@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kbu-G1-3lm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kbu-G1-3lm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="The_Pursuit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="StartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -41,6 +41,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
+                                    <action selector="createGame:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1S0-nz-uIn"/>
                                     <segue destination="ha5-Du-NoB" kind="show" id="CmJ-g9-AdO"/>
                                 </connections>
                             </button>
@@ -130,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3177" y="321"/>
+            <point key="canvasLocation" x="3219" y="321"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qCE-q2-lRM">
@@ -555,7 +556,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7kD-LD-8DZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5UX-w1-hLS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5728.5" y="321"/>
+            <point key="canvasLocation" x="5545.5" y="321"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="iJF-TG-xRQ">
@@ -706,7 +707,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Z6-II-FP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2259" y="321"/>
+            <point key="canvasLocation" x="2478" y="321"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
