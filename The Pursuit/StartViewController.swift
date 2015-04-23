@@ -9,32 +9,37 @@
 import UIKit
 import Parse
 
-enum ParseCloudFunction: String {
-    case CreateGame = "createGame"
-}
 
-extension PFCloud {
-    class func callFunctionInBackground(function: ParseCloudFunction, withParameters: Dictionary <String, String>) {
-        
-    }
-}
-
-class StartViewController: UIViewController {
-
+class StartViewController: GameDataViewController {
+    
+    @IBOutlet weak var createGameButton: UIButton!
+    @IBOutlet weak var joinGameButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    @IBAction func createGame(sender: AnyObject) {
-        PFCloud.callFunctionInBackground("createGame", withParameters: [:]) {
-            
-        }
-        PFCloud.callFunctionInBackground(.CreateGame, withParameters: [:])
-    }
-    
+        game = Game()
 
-    @IBAction func unwindToStartViewController(segue: UIStoryboardSegue) {}
+        locationManager.requestWhenInUseAuthorization()
+    }
     
+    @IBAction func createGame(sender: UIBarButtonItem) {
+        
+        game?.createGame { suscess in
+            if suscess {
+                self.performSegueWithIdentifier("SetGameRules", sender: nil)
+            }
+        }
+    }
+    
+    @IBAction func joinGame(sender: AnyObject) {
+        game?.getPlayerForJoin {
+            self.performSegueWithIdentifier("JoinGame", sender: nil)
+        }
+    }
+    
+    @IBAction func unwindToStartViewController(segue: UIStoryboardSegue) {}
 }
 

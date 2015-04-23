@@ -1,13 +1,21 @@
 PODS:
-  - Bolts (1.1.4)
-  - Parse (1.7.0):
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
+  - MBProgressHUD (0.9.1)
+  - Parse (1.7.1):
     - Bolts (~> 1.1)
 
 DEPENDENCIES:
-  - Parse (~> 1.6)
+  - MBProgressHUD
+  - Parse
 
 SPEC CHECKSUMS:
-  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
-  Parse: 3c2d4e6ade7b59d31c0bc8106340c6b81b31bc0f
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Parse: fa8ec29de6d82035635986c11946299fb1b38316
 
-COCOAPODS: 0.36.1
+COCOAPODS: 0.36.0

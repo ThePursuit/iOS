@@ -8,29 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		2F0148F71C7F130EC8368850 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1151F8AF1AB5F768DCD75B /* libPods.a */; };
+		CC049BE31AC888BB00F0DB81 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC049BE21AC888BB00F0DB81 /* Game.swift */; };
 		CC3C01671A7BABF10071FAEF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C01661A7BABF10071FAEF /* MapKit.framework */; };
+		CC3FC5801AC2C7AA00360E0F /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3FC57F1AC2C7AA00360E0F /* LobbyViewController.swift */; };
+		CCA90A411AC0ABA000139469 /* SetRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA90A401AC0ABA000139469 /* SetRulesViewController.swift */; };
+		CCA9E59C1AC3008D00799DBD /* JoinGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA9E59B1AC3008D00799DBD /* JoinGameViewController.swift */; };
+		CCA9E59E1AC5412C00799DBD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA9E59D1AC5412C00799DBD /* GameViewController.swift */; };
 		CCE948081A7647C200F915CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE948071A7647C200F915CA /* AppDelegate.swift */; };
 		CCE9480A1A7647C200F915CA /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE948091A7647C200F915CA /* StartViewController.swift */; };
 		CCE9480D1A7647C200F915CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCE9480B1A7647C200F915CA /* Main.storyboard */; };
 		CCE9480F1A7647C200F915CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCE9480E1A7647C200F915CA /* Images.xcassets */; };
 		CCE948121A7647C200F915CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE948101A7647C200F915CA /* LaunchScreen.xib */; };
-		CCE9481E1A7647C200F915CA /* The_PursuitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE9481D1A7647C200F915CA /* The_PursuitTests.swift */; };
+		CCEDF1511AD558030086C85F /* GameDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEDF1501AD558030086C85F /* GameDataViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CCE948181A7647C200F915CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CCE947FA1A7647C200F915CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CCE948011A7647C200F915CA;
-			remoteInfo = "The Pursuit";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7D1151F8AF1AB5F768DCD75B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBACD4A86DD6B5436C679BF5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CC049BE21AC888BB00F0DB81 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		CC3C01661A7BABF10071FAEF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CC3FC57F1AC2C7AA00360E0F /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
+		CCA90A401AC0ABA000139469 /* SetRulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRulesViewController.swift; sourceTree = "<group>"; };
+		CCA9E59B1AC3008D00799DBD /* JoinGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGameViewController.swift; sourceTree = "<group>"; };
+		CCA9E59D1AC5412C00799DBD /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		CCE948021A7647C200F915CA /* The Pursuit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Pursuit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCE948061A7647C200F915CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCE948071A7647C200F915CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,9 +38,7 @@
 		CCE9480C1A7647C200F915CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CCE9480E1A7647C200F915CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CCE948111A7647C200F915CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		CCE948171A7647C200F915CA /* The PursuitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The PursuitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CCE9481C1A7647C200F915CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CCE9481D1A7647C200F915CA /* The_PursuitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_PursuitTests.swift; sourceTree = "<group>"; };
+		CCEDF1501AD558030086C85F /* GameDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataViewController.swift; sourceTree = "<group>"; };
 		E0F42CA2B485BC9B334C1782 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,13 +49,6 @@
 			files = (
 				CC3C01671A7BABF10071FAEF /* MapKit.framework in Frameworks */,
 				2F0148F71C7F130EC8368850 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CCE948141A7647C200F915CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,11 +64,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CC049BE11AC8882400F0DB81 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CCEDF1501AD558030086C85F /* GameDataViewController.swift */,
+				CCA9E59D1AC5412C00799DBD /* GameViewController.swift */,
+				CCA9E59B1AC3008D00799DBD /* JoinGameViewController.swift */,
+				CC3FC57F1AC2C7AA00360E0F /* LobbyViewController.swift */,
+				CCA90A401AC0ABA000139469 /* SetRulesViewController.swift */,
+				CCE948091A7647C200F915CA /* StartViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		CCE947F91A7647C200F915CA = {
 			isa = PBXGroup;
 			children = (
 				CCE948041A7647C200F915CA /* The Pursuit */,
-				CCE9481A1A7647C200F915CA /* The PursuitTests */,
 				CCE948031A7647C200F915CA /* Products */,
 				71BF135A029C047E7FC5D2E4 /* Pods */,
 				F165D5AFDB21F3C213E337B5 /* Frameworks */,
@@ -88,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				CCE948021A7647C200F915CA /* The Pursuit.app */,
-				CCE948171A7647C200F915CA /* The PursuitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,10 +98,9 @@
 		CCE948041A7647C200F915CA /* The Pursuit */ = {
 			isa = PBXGroup;
 			children = (
-				CCE948071A7647C200F915CA /* AppDelegate.swift */,
-				CCE948091A7647C200F915CA /* StartViewController.swift */,
+				CCEDF1521AD560C50086C85F /* Model */,
+				CC049BE11AC8882400F0DB81 /* View Controllers */,
 				CCE9480B1A7647C200F915CA /* Main.storyboard */,
-				CCE9480E1A7647C200F915CA /* Images.xcassets */,
 				CCE948101A7647C200F915CA /* LaunchScreen.xib */,
 				CCE948051A7647C200F915CA /* Supporting Files */,
 			);
@@ -109,26 +110,19 @@
 		CCE948051A7647C200F915CA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CCE9480E1A7647C200F915CA /* Images.xcassets */,
+				CCE948071A7647C200F915CA /* AppDelegate.swift */,
 				CCE948061A7647C200F915CA /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CCE9481A1A7647C200F915CA /* The PursuitTests */ = {
+		CCEDF1521AD560C50086C85F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CCE9481D1A7647C200F915CA /* The_PursuitTests.swift */,
-				CCE9481B1A7647C200F915CA /* Supporting Files */,
+				CC049BE21AC888BB00F0DB81 /* Game.swift */,
 			);
-			path = "The PursuitTests";
-			sourceTree = "<group>";
-		};
-		CCE9481B1A7647C200F915CA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CCE9481C1A7647C200F915CA /* Info.plist */,
-			);
-			name = "Supporting Files";
+			name = Model;
 			sourceTree = "<group>";
 		};
 		F165D5AFDB21F3C213E337B5 /* Frameworks */ = {
@@ -162,24 +156,6 @@
 			productReference = CCE948021A7647C200F915CA /* The Pursuit.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CCE948161A7647C200F915CA /* The PursuitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CCE948241A7647C200F915CA /* Build configuration list for PBXNativeTarget "The PursuitTests" */;
-			buildPhases = (
-				CCE948131A7647C200F915CA /* Sources */,
-				CCE948141A7647C200F915CA /* Frameworks */,
-				CCE948151A7647C200F915CA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CCE948191A7647C200F915CA /* PBXTargetDependency */,
-			);
-			name = "The PursuitTests";
-			productName = "The PursuitTests";
-			productReference = CCE948171A7647C200F915CA /* The PursuitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -198,10 +174,6 @@
 							};
 						};
 					};
-					CCE948161A7647C200F915CA = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = CCE948011A7647C200F915CA;
-					};
 				};
 			};
 			buildConfigurationList = CCE947FD1A7647C200F915CA /* Build configuration list for PBXProject "The Pursuit" */;
@@ -218,7 +190,6 @@
 			projectRoot = "";
 			targets = (
 				CCE948011A7647C200F915CA /* The Pursuit */,
-				CCE948161A7647C200F915CA /* The PursuitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -231,13 +202,6 @@
 				CCE9480D1A7647C200F915CA /* Main.storyboard in Resources */,
 				CCE948121A7647C200F915CA /* LaunchScreen.xib in Resources */,
 				CCE9480F1A7647C200F915CA /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CCE948151A7647C200F915CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,28 +245,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCA9E59C1AC3008D00799DBD /* JoinGameViewController.swift in Sources */,
 				CCE9480A1A7647C200F915CA /* StartViewController.swift in Sources */,
+				CCEDF1511AD558030086C85F /* GameDataViewController.swift in Sources */,
+				CC049BE31AC888BB00F0DB81 /* Game.swift in Sources */,
 				CCE948081A7647C200F915CA /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CCE948131A7647C200F915CA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CCE9481E1A7647C200F915CA /* The_PursuitTests.swift in Sources */,
+				CCA90A411AC0ABA000139469 /* SetRulesViewController.swift in Sources */,
+				CCA9E59E1AC5412C00799DBD /* GameViewController.swift in Sources */,
+				CC3FC5801AC2C7AA00360E0F /* LobbyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CCE948191A7647C200F915CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CCE948011A7647C200F915CA /* The Pursuit */;
-			targetProxy = CCE948181A7647C200F915CA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CCE9480B1A7647C200F915CA /* Main.storyboard */ = {
@@ -429,40 +383,6 @@
 			};
 			name = Release;
 		};
-		CCE948251A7647C200F915CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "The PursuitTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The Pursuit.app/The Pursuit";
-			};
-			name = Debug;
-		};
-		CCE948261A7647C200F915CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "The PursuitTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The Pursuit.app/The Pursuit";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -480,15 +400,6 @@
 			buildConfigurations = (
 				CCE948221A7647C200F915CA /* Debug */,
 				CCE948231A7647C200F915CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CCE948241A7647C200F915CA /* Build configuration list for PBXNativeTarget "The PursuitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CCE948251A7647C200F915CA /* Debug */,
-				CCE948261A7647C200F915CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
