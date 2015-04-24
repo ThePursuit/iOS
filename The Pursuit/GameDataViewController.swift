@@ -17,6 +17,7 @@ extension UIBarButtonItem: Enabeld {}
 
 class GameDataViewController: UIViewController {
     var game: Game?
+    var player: Player?
     
     // MARK: Navigation
     
@@ -24,6 +25,7 @@ class GameDataViewController: UIViewController {
         super.prepareForSegue(segue, sender: sender)
         
         if let destination = segue.destinationViewController as? GameDataViewController {
+            destination.player = player
             destination.game = game
         }
     }

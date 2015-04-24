@@ -20,23 +20,27 @@ class StartViewController: GameDataViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        game = Game()
-
         locationManager.requestWhenInUseAuthorization()
     }
     
     @IBAction func createGame(sender: UIBarButtonItem) {
         
-        game?.createGame { suscess in
-            if suscess {
+        GameStore.createGame { (game, player, error) -> () in
+            if let game = game {
+                self.game = game
                 self.performSegueWithIdentifier("SetGameRules", sender: nil)
+            } else if let error = error {
+                println("\(error.localizedDescription)")
             }
         }
     }
     
     @IBAction func joinGame(sender: AnyObject) {
-        game?.getPlayerForJoin {
-            self.performSegueWithIdentifier("JoinGame", sender: nil)
+        
+        GameStore.createPlayer { (player, error) -> () in
+            if let player = player {
+                self.performSegueWithIdentifier("JoinGame", sender: nil)                
+            }
         }
     }
     
