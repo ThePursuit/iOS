@@ -8,16 +8,40 @@
 
 import UIKit
 
-protocol Enabeld {
-    var enabled: Bool { get set }
-}
-
-extension UIButton: Enabeld {}
-extension UIBarButtonItem: Enabeld {}
-
 class GameDataViewController: UIViewController {
     var game: Game?
     var player: Player?
+    var isLoading = false
+    
+    // MARK: Loading view
+    
+    func startLoadingViewWithText(text: String?) {
+        if !isLoading {
+            isLoading = true
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            if let text = text {
+                hud.labelText = text
+            }
+        } else {
+            println("Loading view already showing")
+        }
+    }
+    
+    func stopLoadingView() {
+        if isLoading {
+            isLoading = false
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+        } else {
+            println("No loading view to stop")
+        }
+    }
+    
+    func showMessage(message: String) {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        hud.labelText = message
+        hud.mode = .Text
+        hud.hide(true, afterDelay: 2)
+    }
     
     // MARK: Navigation
     

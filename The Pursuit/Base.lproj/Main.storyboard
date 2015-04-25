@@ -73,10 +73,6 @@
                                     <action selector="joinGame:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0ua-4X-sqQ"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="joM-Dm-Isc">
-                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -85,8 +81,6 @@
                             <constraint firstItem="v6n-JX-YsG" firstAttribute="centerX" secondItem="0zL-P7-inh" secondAttribute="centerX" id="RVs-vJ-qn6"/>
                             <constraint firstAttribute="centerY" secondItem="0zL-P7-inh" secondAttribute="centerY" id="akb-0W-ixm"/>
                             <constraint firstAttribute="centerX" secondItem="0zL-P7-inh" secondAttribute="centerX" id="arf-FD-a7N"/>
-                            <constraint firstItem="joM-Dm-Isc" firstAttribute="centerX" secondItem="v6n-JX-YsG" secondAttribute="centerX" constant="0.5" id="dEb-n0-tHq"/>
-                            <constraint firstItem="joM-Dm-Isc" firstAttribute="top" secondItem="v6n-JX-YsG" secondAttribute="bottom" constant="8" id="eTa-0H-dnQ"/>
                             <constraint firstItem="v6n-JX-YsG" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="k1I-h7-QHv"/>
                             <constraint firstItem="0zL-P7-inh" firstAttribute="height" secondItem="7sT-Nz-bhd" secondAttribute="height" id="ml5-ij-Kwn"/>
                             <constraint firstItem="0zL-P7-inh" firstAttribute="centerX" secondItem="7sT-Nz-bhd" secondAttribute="centerX" id="pBw-HK-4XF"/>
@@ -98,15 +92,12 @@
                                 <exclude reference="0zL-P7-inh"/>
                                 <exclude reference="v6n-JX-YsG"/>
                                 <exclude reference="7sT-Nz-bhd"/>
-                                <exclude reference="joM-Dm-Isc"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="N8b-gL-nsG"/>
                                 <exclude reference="RVs-vJ-qn6"/>
                                 <exclude reference="k1I-h7-QHv"/>
                                 <exclude reference="pG4-v2-Y1Y"/>
-                                <exclude reference="dEb-n0-tHq"/>
-                                <exclude reference="eTa-0H-dnQ"/>
                                 <exclude reference="akb-0W-ixm"/>
                                 <exclude reference="arf-FD-a7N"/>
                                 <exclude reference="ml5-ij-Kwn"/>
@@ -120,15 +111,12 @@
                                 <include reference="0zL-P7-inh"/>
                                 <include reference="v6n-JX-YsG"/>
                                 <include reference="7sT-Nz-bhd"/>
-                                <include reference="joM-Dm-Isc"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="N8b-gL-nsG"/>
                                 <include reference="RVs-vJ-qn6"/>
                                 <include reference="k1I-h7-QHv"/>
                                 <include reference="pG4-v2-Y1Y"/>
-                                <include reference="dEb-n0-tHq"/>
-                                <include reference="eTa-0H-dnQ"/>
                                 <include reference="akb-0W-ixm"/>
                                 <include reference="arf-FD-a7N"/>
                                 <include reference="ml5-ij-Kwn"/>
@@ -140,9 +128,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="wZp-Hd-oqq"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="joM-Dm-Isc" id="y79-Fv-gQn"/>
-                        <outlet property="createGameButton" destination="0zL-P7-inh" id="RuV-P4-Ysz"/>
-                        <outlet property="joinGameButton" destination="7sT-Nz-bhd" id="imt-pG-fcj"/>
                         <segue destination="ha5-Du-NoB" kind="show" identifier="SetGameRules" id="GCK-Qw-CAW"/>
                         <segue destination="rVq-je-lvT" kind="show" identifier="JoinGame" id="oF5-qd-27Q"/>
                     </connections>

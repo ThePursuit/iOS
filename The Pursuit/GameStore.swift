@@ -219,4 +219,8 @@ class GameStore {
             }
         }
     }
+    
+    class func tryCatch(game: Game, player: Player, completion: CompletionWithGame) {
+        
+    }
 }

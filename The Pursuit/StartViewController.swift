@@ -12,10 +12,6 @@ import Parse
 
 class StartViewController: GameDataViewController {
     
-    @IBOutlet weak var createGameButton: UIButton!
-    @IBOutlet weak var joinGameButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -25,6 +21,7 @@ class StartViewController: GameDataViewController {
     
     @IBAction func createGame(sender: UIBarButtonItem) {
         
+        startLoadingViewWithText("Creating game")
         GameStore.createGame { (game, player, error) -> () in
             if let game = game {
                 self.game = game
@@ -33,16 +30,19 @@ class StartViewController: GameDataViewController {
             } else if let error = error {
                 println("\(error.localizedDescription)")
             }
+            self.stopLoadingView()
         }
     }
     
     @IBAction func joinGame(sender: AnyObject) {
         
+        startLoadingViewWithText("Creating player")
         GameStore.createPlayer { (player, error) -> () in
             if let player = player {
                 self.player = player
                 self.performSegueWithIdentifier("JoinGame", sender: nil)                
             }
+            self.stopLoadingView()
         }
     }
     

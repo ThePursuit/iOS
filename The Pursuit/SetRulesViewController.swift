@@ -36,6 +36,7 @@ class SetRulesViewController: GameDataViewController {
         let catch = Int(round(catchRadiusSlider.value))
         let time = Int(round(timeSlider.value))
         
+        startLoadingViewWithText("Setting up rules")
         GameStore.setRulesForGame(game!, radius: radius, maxPlayers: players, catchRadius: catch, timeDuration: time) { (game, error) -> () in
             if let game = game {
                 
@@ -50,10 +51,12 @@ class SetRulesViewController: GameDataViewController {
                     if let error = error {
                         println("\(error.localizedDescription)")
                     }
+                    self.stopLoadingView()
                 }
             }
             if let error = error {
                 println("\(error.localizedDescription)")
+                self.stopLoadingView()
             }
         }
     }

@@ -32,6 +32,7 @@
 		CC049BE21AC888BB00F0DB81 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		CC3C01661A7BABF10071FAEF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CC3FC57F1AC2C7AA00360E0F /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
+		CC58550B1AEB74F9000CD869 /* ThePursuit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ThePursuit-Bridging-Header.h"; path = "../ThePursuit-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC98FD3C1AE902CF00741D63 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CC98FD3E1AE902F000741D63 /* GameStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		CC98FD401AE903DD00741D63 /* Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 		CCE948051A7647C200F915CA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CC58550B1AEB74F9000CD869 /* ThePursuit-Bridging-Header.h */,
 				CCE9480E1A7647C200F915CA /* Images.xcassets */,
 				CCE948071A7647C200F915CA /* AppDelegate.swift */,
 				CCE948061A7647C200F915CA /* Info.plist */,
@@ -382,6 +384,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ThePursuit-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -396,6 +399,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ThePursuit-Bridging-Header.h";
 			};
 			name = Release;
 		};
