@@ -16,12 +16,29 @@ class JoinGameViewController: GameDataViewController {
     
     @IBAction func joinGame(sender: AnyObject) {
         
-        if let name = nameTextView.text {
-            game?.changeName(name)
+        if let gameCode = gameCodeTextView.text, let name = nameTextView.text {
+            
+            GameStore.changeNameForPlayer(player!, name: name) { (player, error) -> () in
+                if let player = player {
+                    self.player = player
+                    self.joinGameWithCode(gameCode)
+                }
+                if let error = error {
+                    println("\(error.localizedDescription)")
+                }
+            }
         }
-        
-        game?.joinGameWithCode(gameCodeTextView.text) {
-            self.performSegueWithIdentifier("GoToLobby", sender: nil)
+    }
+    
+    func joinGameWithCode(gameCode: String) {
+        GameStore.joinGameWithPlayer(self.player!, withCode: gameCode) { (game, error) -> () in
+            if let game = game {
+                self.game = game
+                self.performSegueWithIdentifier("GoToLobby", sender: nil)
+            }
+            if let error = error {
+                println("\(error.localizedDescription)")
+            }
         }
     }
 }

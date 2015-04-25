@@ -16,74 +16,81 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
     
     var timer: NSTimer?
     
+    // MARK: View
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        gameCodeLabel.text = "Game code: \(game!.id)"
+        gameCodeLabel.text = "Game code: \(game!.ID)"
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "checkForNewPlayers", userInfo: nil, repeats: true)
         timer?.fire()
         
-        if let isCreator = game?.player?["isCreator"] as? Bool {
-            if !isCreator {
-               self.navigationItem.rightBarButtonItem = nil
-            }
+        if let isCreator = player?.isCreator where !isCreator {
+            self.navigationItem.rightBarButtonItem = nil
         }
     }
     
     func checkForNewPlayers() {
-        game?.reloadPlayers { (players) -> () in
-            self.tableView.reloadData()
+        GameStore.reloadPlayersInGame(game!) { (players, error) -> () in
+            
+            if let players = players {
+                self.game?.players = players
+                self.tableView.reloadData()
+            }
         }
         
-        let stateRelationQuery = game!.game!.relationForKey("state").query()
-        stateRelationQuery?.findObjectsInBackgroundWithBlock() { (object, error) -> Void in
-            let isPlaying = object!.first!["isPlaying"] as! Bool
-            if isPlaying {
+        GameStore.getStateFromGame(game!) { (state, error) -> () in
+            if let state = state where state.isPlaying {
+                self.game?.state = state
+                
                 self.timer?.invalidate()
                 self.performSegueWithIdentifier("play", sender: nil)
             }
         }
     }
     
+    // MARK: User interaction
+    
     @IBAction func play(sender: AnyObject) {
-        let parameters = ["gameID": game!.id]
-        PFCloud.callFunctionInBackground("startGame", withParameters: parameters) { (object, error) -> Void in
-            
-            self.game?.game = object as? PFObject
-            self.performSegueWithIdentifier("play", sender: nil)
+        
+        GameStore.startGame(game!) { (game, error) -> () in
+            if let game = game {
+                self.game = game
+                self.performSegueWithIdentifier("play", sender: nil)
+            }
+            if let error = error {
+                println("\(error.localizedDescription)")
+            }
         }
     }
     
     @IBAction func readyStatusChanged(sender: UIButton) {
-        sender.enabled = false
-        game?.switchReadyStatus() { (status) -> () in
-            if !status {
-                sender.backgroundColor = UIColor.greenColor()
-                sender.titleLabel?.text = "Ready"
-            } else {
-                sender.backgroundColor = UIColor.redColor()
-                sender.titleLabel?.text = "Not ready"
+        GameStore.changeReadyStatusForPlayer(player!, to: !player!.isReady) { (player, error) -> () in
+            if let player = player {
+                sender.backgroundColor = player.isReady ? .redColor() : .greenColor()
+                sender.titleLabel?.text = player.isReady ? "Ready" : "Not ready"
             }
-            sender.enabled = true
+            if let error = error {
+                println("\(error.localizedDescription)")
+            }
         }
     }
     
     // MARK: Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return game?.players != nil ? game!.players!.count : 0
+        return game?.players.count ?? 0
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PlayerCell", forIndexPath: indexPath) as! UITableViewCell
         
-        println("\(game!.nameForPlayerAtIndex(indexPath.row))")
+        let player = game!.players[indexPath.row]
+        let isPreyString = (player.isPrey) ? " - Prey" : ""
         
-        let isPreyString = (game!.players![indexPath.row]["isPrey"] as! Bool) ? " - Prey" : ""
-        
-        cell.textLabel?.text = game!.nameForPlayerAtIndex(indexPath.row) + isPreyString
-        cell.accessoryType = game!.isPlayerReadyAtIndex(indexPath.row) ? .Checkmark : .None
+        cell.textLabel?.text = player.name + isPreyString
+        cell.accessoryType = player.isReady ? .Checkmark : .None
         
         return cell
     }
@@ -91,13 +98,13 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
     // MARK: Table view data delegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let player = game!.players![indexPath.row]
-        
-        self.game?.players?.filter{ $0.objectId != player.objectId }.map { $0["isPrey"] = false }
-        self.game?.players?.filter{ $0.objectId != player.objectId }.map { $0.saveInBackgroundWithBlock(nil)}
-        
-        player["isPrey"] = true
-        player.saveInBackgroundWithBlock(nil)
+//        let player = game!.players[indexPath.row]
+//        
+//        game?.players.filter{ $0.objectID != player.objectID }.map { $0.isPrey = false }
+//        game?.players.filter{ $0.objectID != player.objectID }.map { $0.saveInBackgroundWithBlock(nil)}
+//        
+//        player.isPrey = true
+//        player.saveInBackgroundWithBlock(nil)
     }
     
 }

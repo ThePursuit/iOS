@@ -29,4 +29,23 @@ struct Game {
             self.rules = Rules(rules: rules)
         }
     }
+    
+    init(game: PFObject, players: [Player], rules: Rules, state: State) {
+        self.ID = game["gameID"] as? String ?? "Missing ID"
+        self.players = players
+        self.state = state
+        self.rules = rules
+    }
+}
+
+extension Game: Printable {
+    var description: String {
+        return "Game: \(ID)"
+    }
+}
+
+extension Game: Equatable {}
+
+func ==(lhs: Game, rhs: Game) -> Bool {
+    return lhs.ID == rhs.ID
 }

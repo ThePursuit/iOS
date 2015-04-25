@@ -24,14 +24,14 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
     
     
     @IBAction func tryCatch(sender: AnyObject) {
-        let parameters = ["gameID": game!.game!["gameID"]!, "playerObjID": game!.player!.objectId!]
-        PFCloud.callFunctionInBackground("tryCatch", withParameters: parameters) { (object, error) -> Void in
-            self.game?.game = object as? PFObject
-            let isPlaying = self.game?.game!["isPlaying"] as! Bool
-            if !isPlaying {
-                self.navigationController?.popViewControllerAnimated(true)
-            }
-        }
+//        let parameters = ["gameID": game!.game!["gameID"]!, "playerObjID": game!.player!.objectId!]
+//        PFCloud.callFunctionInBackground("tryCatch", withParameters: parameters) { (object, error) -> Void in
+//            self.game?.game = object as? PFObject
+//            let isPlaying = self.game?.game!["isPlaying"] as! Bool
+//            if !isPlaying {
+//                self.navigationController?.popViewControllerAnimated(true)
+//            }
+//        }
         
     }
     
@@ -40,6 +40,8 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
         
         map.showsUserLocation = true
         map.userTrackingMode = .Follow
+        map.scrollEnabled = false
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
 
         UIApplication.sharedApplication().idleTimerDisabled = true
@@ -51,23 +53,23 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
     func updateGame() {
         
         let coordinate = locationManager.location.coordinate
-        game?.updateGameWithCoordinate(coordinate) { (players) -> () in
-            
-            self.annotations = players!.filter(self.isNotThisPlayer).filter(self.isNotPrey).map(self.makeAnnotations)
-            
-            let prey = players!.filter(self.isPrey).first
-            let locationOfPrey = prey?["location"] as? PFGeoPoint
-
-            
-            if let locationOfPrey = locationOfPrey {
-            
-                let locationOfPreyCL = CLLocation(latitude: locationOfPrey.latitude, longitude: locationOfPrey.longitude)
-            	let locationOfPlayerCL = self.locationManager.location
-            
-                let distance = locationOfPlayerCL.distanceFromLocation(locationOfPreyCL)
-                self.title = "\(floor(distance))m"
-            }
-        }
+//        game?.updateGameWithCoordinate(coordinate) { (players) -> () in
+//            
+//            self.annotations = players!.filter(self.isNotThisPlayer).filter(self.isNotPrey).map(self.makeAnnotations)
+//            
+//            let prey = players!.filter(self.isPrey).first
+//            let locationOfPrey = prey?["location"] as? PFGeoPoint
+//
+//            
+//            if let locationOfPrey = locationOfPrey {
+//            
+//                let locationOfPreyCL = CLLocation(latitude: locationOfPrey.latitude, longitude: locationOfPrey.longitude)
+//            	let locationOfPlayerCL = self.locationManager.location
+//            
+//                let distance = locationOfPlayerCL.distanceFromLocation(locationOfPreyCL)
+//                self.title = "\(floor(distance))m"
+//            }
+//        }
     }
     
     func makeAnnotations(player:PFObject) -> MKPointAnnotation {
@@ -81,9 +83,9 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
         return annotation
     }
     
-    func isNotThisPlayer(player:PFObject) -> Bool {
-        return player.objectId! != self.game?.player!.objectId!
-    }
+//    func isNotThisPlayer(player:PFObject) -> Bool {
+//        return player.objectId! != self.game?.player!.objectId!
+//    }
     
     func isPrey(player:PFObject) -> Bool {
         return player["isPrey"] as! Bool

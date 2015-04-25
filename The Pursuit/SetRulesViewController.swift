@@ -31,23 +31,30 @@ class SetRulesViewController: GameDataViewController {
     
     @IBAction func setRulesAndGoToLobby(sender: AnyObject) {
         
-        let gameID = game!.id
         let radius = Int(round(radiusSlider.value))
         let players = Int(round(maxPlayerSlider.value))
         let catch = Int(round(catchRadiusSlider.value))
         let time = Int(round(timeSlider.value))
         
-        let parameters:[String : AnyObject] = ["gameID":gameID, "radius":radius, "maxPlayers":players, "catchRadius":catch, "duration":time]
-        
-        PFCloud.callFunctionInBackground("setRules", withParameters: parameters) { (object, error) -> Void in
-            println("\(object)")
-            self.game?.game = object as? PFObject
-            
-            if let name = self.nameTextView.text {
-                self.game?.changeName(name)
+        GameStore.setRulesForGame(game!, radius: radius, maxPlayers: players, catchRadius: catch, timeDuration: time) { (game, error) -> () in
+            if let game = game {
+                
+                let name = self.nameTextView.text ?? "No name"
+                
+                GameStore.changeNameForPlayer(self.player!, name: name) { (player, error) -> () in
+                    if let player = player {
+                        self.player = player
+                        self.game = game
+                        self.performSegueWithIdentifier("GoToLobby", sender: nil)
+                    }
+                    if let error = error {
+                        println("\(error.localizedDescription)")
+                    }
+                }
             }
-            
-            self.performSegueWithIdentifier("GoToLobby", sender: nil)
+            if let error = error {
+                println("\(error.localizedDescription)")
+            }
         }
     }
     

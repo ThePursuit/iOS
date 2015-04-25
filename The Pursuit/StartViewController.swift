@@ -28,6 +28,7 @@ class StartViewController: GameDataViewController {
         GameStore.createGame { (game, player, error) -> () in
             if let game = game {
                 self.game = game
+                self.player = player
                 self.performSegueWithIdentifier("SetGameRules", sender: nil)
             } else if let error = error {
                 println("\(error.localizedDescription)")
@@ -39,6 +40,7 @@ class StartViewController: GameDataViewController {
         
         GameStore.createPlayer { (player, error) -> () in
             if let player = player {
+                self.player = player
                 self.performSegueWithIdentifier("JoinGame", sender: nil)                
             }
         }
