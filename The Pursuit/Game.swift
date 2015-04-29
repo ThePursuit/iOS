@@ -10,7 +10,7 @@ import Foundation
 import Parse
 
 struct Game {
-    var parseGame: PFObject?
+    var parseGame: PFObject
     var players: [Player]
     var ID: String
     var state: State?
@@ -18,6 +18,7 @@ struct Game {
     
     
     init(game: PFObject, players: [PFObject], rules: PFObject?, state: PFObject?) {
+        parseGame = game
         self.ID = game["gameID"] as? String ?? "Missing ID"
         self.players = players.map { Player(player: $0) }
         
@@ -31,6 +32,7 @@ struct Game {
     }
     
     init(game: PFObject, players: [Player], rules: Rules, state: State) {
+        parseGame = game
         self.ID = game["gameID"] as? String ?? "Missing ID"
         self.players = players
         self.state = state

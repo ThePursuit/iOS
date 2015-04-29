@@ -24,7 +24,7 @@ struct Player {
         self.parsePlayer = player
         self.name = player["name"] as? String ?? "No name"
         self.isReady = player["isReady"] as? Bool ?? false
-        self.isPrey = player["ISPREY"] as? Bool ?? false
+        self.isPrey = player["isPrey"] as? Bool ?? false
         self.isCreator = player["isCreator"] as? Bool ?? false
         
         let geoPointLocation = player["location"] as? PFGeoPoint
@@ -34,7 +34,7 @@ struct Player {
 
 extension Player: Printable {
     var description: String {
-        return "Player: \(name), objectID: \(objectID)"
+        return "Player: \(name), objectID: \(objectID), location: \(location.latitude)"
     }
 }
 

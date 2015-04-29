@@ -52,46 +52,34 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
 
     func updateGame() {
         
-        let coordinate = locationManager.location.coordinate
-//        game?.updateGameWithCoordinate(coordinate) { (players) -> () in
-//            
-//            self.annotations = players!.filter(self.isNotThisPlayer).filter(self.isNotPrey).map(self.makeAnnotations)
-//            
-//            let prey = players!.filter(self.isPrey).first
-//            let locationOfPrey = prey?["location"] as? PFGeoPoint
-//
-//            
-//            if let locationOfPrey = locationOfPrey {
-//            
-//                let locationOfPreyCL = CLLocation(latitude: locationOfPrey.latitude, longitude: locationOfPrey.longitude)
-//            	let locationOfPlayerCL = self.locationManager.location
-//            
-//                let distance = locationOfPlayerCL.distanceFromLocation(locationOfPreyCL)
-//                self.title = "\(floor(distance))m"
-//            }
-//        }
+        player?.location = locationManager.location.coordinate
+        GameStore.updateGame(game!, withPlayer: player!) { (game, player, error) -> () in
+            self.game = game
+            self.player = player
+            
+            let annotations = self.game?.players.filter { self.player == $0 && !$0.isPrey }.map(self.makeAnnotations)
+            self.annotations = annotations!
+            
+            let prey = self.game!.players.filter { $0.isPrey }.first!
+            let preyLocation = CLLocation(latitude: prey.location.latitude, longitude: prey.location.longitude)
+            let playerLocation = CLLocation(latitude: player!.location.latitude, longitude: player!.location.longitude)
+            
+            let distance = preyLocation.distanceFromLocation(playerLocation)
+            self.title = "\(floor(distance))m"
+            
+            println("Players count:\(game?.players.count)")
+            println("Prey:\(prey)")
+            println("Annotations count \(annotations?.count)")
+            
+        }
     }
     
-    func makeAnnotations(player:PFObject) -> MKPointAnnotation {
-        let location = player["location"] as! PFGeoPoint
+    func makeAnnotations(player:Player) -> MKPointAnnotation {
+        let location = player.location
         let annotation = MKPointAnnotation()
-        annotation.title = player["name"] as? String ?? player.objectId
-            
-        annotation.title = player["name"] as? String ?? "No name";
+        annotation.title = player.name
         annotation.coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
             
         return annotation
-    }
-    
-//    func isNotThisPlayer(player:PFObject) -> Bool {
-//        return player.objectId! != self.game?.player!.objectId!
-//    }
-    
-    func isPrey(player:PFObject) -> Bool {
-        return player["isPrey"] as! Bool
-    }
-    
-    func isNotPrey(player:PFObject) -> Bool {
-        return !(player["isPrey"] as! Bool)
     }
 }

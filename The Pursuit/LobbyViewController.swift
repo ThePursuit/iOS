@@ -40,11 +40,13 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
         }
         
         GameStore.getStateFromGame(game!) { (state, error) -> () in
-            if let state = state where state.isPlaying {
+            if let state = state {
                 self.game?.state = state
                 
-                self.timer?.invalidate()
-                self.performSegueWithIdentifier("play", sender: nil)
+                if state.isPlaying {
+                    self.timer?.invalidate()
+                    self.performSegueWithIdentifier("play", sender: nil)
+                }
             }
         }
     }

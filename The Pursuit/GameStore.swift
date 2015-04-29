@@ -53,7 +53,9 @@ class GameStore {
     }
     
     class func getStateFromGame(game: Game, completion: CompletionWithState) {
-        let stateRelationQuery = game.parseGame?.relationForKey("state").query()
+        let stateRelationQuery = game.parseGame.relationForKey("state").query()
+        println("\(stateRelationQuery)")
+        println("\(game.parseGame)")
         stateRelationQuery?.findObjectsInBackgroundWithBlock() { (objects, error) -> Void in
             if let stateObject = objects?.first as? PFObject {
                 let state = State(state: stateObject)
@@ -67,17 +69,17 @@ class GameStore {
     }
     
     class func reloadPlayersInGame(game:Game, completion: CompletionWithPlayers) {
-        if let playersRelation = game.parseGame?.relationForKey("players") {
-            playersRelation.query()!.findObjectsInBackgroundWithBlock() { (objects, error) -> Void in
-                if let objects = (objects as? [PFObject]) {
-                    let players = objects.map { Player(player:$0) }
-                    completion(players, nil)
-                }
-                if let error = error {
-                    completion(nil, error)
-                }
+        let playersRelation = game.parseGame.relationForKey("players")
+        playersRelation.query()!.findObjectsInBackgroundWithBlock() { (objects, error) -> Void in
+            if let objects = (objects as? [PFObject]) {
+                let players = objects.map { Player(player:$0) }
+                completion(players, nil)
+            }
+            if let error = error {
+                completion(nil, error)
             }
         }
+        
     }
     
     // MARK: Set Values
@@ -207,8 +209,9 @@ class GameStore {
             
             if let gameObject = object as? PFObject {
                 GameStore.getStateRulesAndPlayersFromGame(gameObject) { (state, rules, players, error) -> () in
-                    if let state = state, let rules = rules {
+                    if let state = state, let rules = rules, let players = players {
                         game.state = state
+                        game.players = players
                         game.rules = rules
                         completion(game, player, nil)
                     }
