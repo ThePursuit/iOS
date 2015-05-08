@@ -108,12 +108,11 @@ class GameStore {
         }
     }
     
-    class func setRulesForGame(var game: Game, radius: Int, maxPlayers: Int, catchRadius: Int, timeDuration: Int, completion: CompletionWithGame) {
+    class func setRulesForGame(var game: Game, radius: Int, catchRadius: Int, timeDuration: Int, completion: CompletionWithGame) {
         
         let parameters:[String : AnyObject] = [
             "gameID": game.ID,
             "radius": radius,
-            "maxPlayers": maxPlayers,
             "catchRadius": catchRadius,
             "duration": timeDuration
         ]
@@ -197,12 +196,12 @@ class GameStore {
         }
     }
     
-    class func updateGame(var game: Game, withPlayer player: Player, completion: CompletionWithGameAndPlayer) {
-        let parameters = [
+    class func updateGame(var game: Game, var withPlayer player: Player, completion: CompletionWithGameAndPlayer) {
+        let parameters: [String: AnyObject] = [
             "gameID": game.ID,
             "playerObjID": player.objectID,
-            "longitude": "\(player.location.longitude)",
-            "latitude": "\(player.location.latitude)"
+            "longitude": player.location.longitude,
+            "latitude": player.location.latitude
         ]
         
         PFCloud.callFunctionInBackground("updateGame", withParameters: parameters) { (object, error) -> Void in
@@ -213,6 +212,7 @@ class GameStore {
                         game.state = state
                         game.players = players
                         game.rules = rules
+                        player = players.filter { $0 == player }.first!
                         completion(game, player, nil)
                     }
                     if let error = error {
@@ -223,7 +223,27 @@ class GameStore {
         }
     }
     
-    class func tryCatch(game: Game, player: Player, completion: CompletionWithGame) {
+    class func tryCatch(var game: Game, player: Player, completion: CompletionWithGame) {
+        let parameters = [
+            "gameID": game.ID,
+            "playerObjID": player.objectID
+        ]
         
+        PFCloud.callFunctionInBackground("updateGame", withParameters: parameters) { (object, error) -> Void in
+            
+            if let gameObject = object as? PFObject {
+                GameStore.getStateRulesAndPlayersFromGame(gameObject) { (state, rules, players, error) -> () in
+                    if let state = state, let rules = rules, let players = players {
+                        game.state = state
+                        game.players = players
+                        game.rules = rules
+                        completion(game, nil)
+                    }
+                    if let error = error {
+                        completion(nil, error)
+                    }
+                }
+            }
+        }
     }
 }

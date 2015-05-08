@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AVFoundation
 
 class LobbyViewController: GameDataViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -21,12 +22,16 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        AVAudioSession.sharedInstance().requestRecordPermission { (granted) -> Void in
+            println("\(granted)")
+        }
+        
         gameCodeLabel.text = "Game code: \(game!.ID)"
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "checkForNewPlayers", userInfo: nil, repeats: true)
         timer?.fire()
         
         if let isCreator = player?.isCreator where !isCreator {
-            self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem?.title = "Ready"
         }
     }
     
@@ -35,6 +40,7 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
             
             if let players = players {
                 self.game?.players = players
+                self.player = players.filter { $0 == self.player}.first!
                 self.tableView.reloadData()
             }
         }
@@ -53,12 +59,18 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
     
     // MARK: User interaction
     
-    @IBAction func play(sender: AnyObject) {
-        
+    @IBAction func readyStatusChanged(sender: UIBarButtonItem) {
+        if player!.isCreator {
+            play()
+        } else {
+            changeReadyStatus(sender)
+        }
+    }
+    
+    func play() {
         GameStore.startGame(game!) { (game, error) -> () in
             if let game = game {
                 self.game = game
-                self.performSegueWithIdentifier("play", sender: nil)
             }
             if let error = error {
                 println("\(error.localizedDescription)")
@@ -66,11 +78,10 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
         }
     }
     
-    @IBAction func readyStatusChanged(sender: UIButton) {
+    func changeReadyStatus(sender: UIBarButtonItem) {
         GameStore.changeReadyStatusForPlayer(player!, to: !player!.isReady) { (player, error) -> () in
             if let player = player {
-                sender.backgroundColor = player.isReady ? .redColor() : .greenColor()
-                sender.titleLabel?.text = player.isReady ? "Ready" : "Not ready"
+                sender.title = player.isReady ? "Ready" : "Not ready"
             }
             if let error = error {
                 println("\(error.localizedDescription)")
@@ -89,24 +100,16 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("PlayerCell", forIndexPath: indexPath) as! UITableViewCell
         
         let player = game!.players[indexPath.row]
-        let isPreyString = (player.isPrey) ? " - Prey" : ""
         
-        cell.textLabel?.text = player.name + isPreyString
+        cell.textLabel?.text = player.name
         cell.accessoryType = player.isReady ? .Checkmark : .None
         
         return cell
     }
     
-    // MARK: Table view data delegate
+    // MARK: Navigation
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let player = game!.players[indexPath.row]
-//        
-//        game?.players.filter{ $0.objectID != player.objectID }.map { $0.isPrey = false }
-//        game?.players.filter{ $0.objectID != player.objectID }.map { $0.saveInBackgroundWithBlock(nil)}
-//        
-//        player.isPrey = true
-//        player.saveInBackgroundWithBlock(nil)
+    @IBAction func unwindToLobbyViewController(segue: UIStoryboardSegue) {
     }
     
 }

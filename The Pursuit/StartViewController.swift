@@ -16,6 +16,8 @@ class StartViewController: GameDataViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         locationManager.requestWhenInUseAuthorization()
     }
     

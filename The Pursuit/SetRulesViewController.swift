@@ -14,9 +14,7 @@ class SetRulesViewController: GameDataViewController {
     @IBOutlet weak var timeSlider: UISlider!
     @IBOutlet weak var radiusSlider: UISlider!
     @IBOutlet weak var catchRadiusSlider: UISlider!
-    @IBOutlet weak var maxPlayerSlider: UISlider!
     
-    @IBOutlet weak var maxPlayerLabel: UILabel!
     @IBOutlet weak var catchLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var radiusLabel: UILabel!
@@ -26,18 +24,17 @@ class SetRulesViewController: GameDataViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        [timeSlider, radiusSlider, catchRadiusSlider, maxPlayerSlider].map(sliderDidChangeValue)
+        [timeSlider, radiusSlider, catchRadiusSlider].map(sliderDidChangeValue)
     }
     
     @IBAction func setRulesAndGoToLobby(sender: AnyObject) {
         
         let radius = Int(round(radiusSlider.value))
-        let players = Int(round(maxPlayerSlider.value))
         let catch = Int(round(catchRadiusSlider.value))
         let time = Int(round(timeSlider.value))
         
         startLoadingViewWithText("Setting up rules")
-        GameStore.setRulesForGame(game!, radius: radius, maxPlayers: players, catchRadius: catch, timeDuration: time) { (game, error) -> () in
+        GameStore.setRulesForGame(game!, radius: radius, catchRadius: catch, timeDuration: time) { (game, error) -> () in
             if let game = game {
                 
                 let name = self.nameTextView.text ?? "No name"
@@ -70,8 +67,6 @@ class SetRulesViewController: GameDataViewController {
             radiusLabel.text = "Radius: \(value)m"
         case catchRadiusSlider:
             catchLabel.text = "catch: \(value)m"
-        case maxPlayerSlider:
-            maxPlayerLabel.text = "Max Players: \(value)"
         default:
             ""
         }

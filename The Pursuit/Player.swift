@@ -20,15 +20,15 @@ struct Player {
     var isCreator: Bool
     
     init(player: PFObject) {
-        self.objectID = player.objectId ?? ""
-        self.parsePlayer = player
-        self.name = player["name"] as? String ?? "No name"
-        self.isReady = player["isReady"] as? Bool ?? false
-        self.isPrey = player["isPrey"] as? Bool ?? false
-        self.isCreator = player["isCreator"] as? Bool ?? false
+        objectID = player.objectId ?? ""
+        parsePlayer = player
+        name = player["name"] as? String ?? "No name"
+        isReady = player["isReady"] as? Bool ?? false
+        isPrey = player["isPrey"] as? Bool ?? false
+        isCreator = player["isCreator"] as? Bool ?? false
         
         let geoPointLocation = player["location"] as? PFGeoPoint
-        self.location = CLLocationCoordinate2D(latitude: geoPointLocation?.latitude ?? 0, longitude: geoPointLocation?.longitude ?? 0)
+        location = CLLocationCoordinate2D(latitude: geoPointLocation?.latitude ?? 0, longitude: geoPointLocation?.longitude ?? 0)
     }
 }
 

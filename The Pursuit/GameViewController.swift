@@ -9,11 +9,17 @@
 import UIKit
 import MapKit
 import Parse
+import AVFoundation
 
-class GameViewController: GameDataViewController, MKMapViewDelegate {
+class GameViewController: GameDataViewController, MKMapViewDelegate, AVAudioRecorderDelegate {
+    
+    // MARK: Properties
     
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var catchButton: UIButton!
+    @IBOutlet weak var talkButton: UIButton!
     
+    var timer: NSTimer?
     let locationManager = CLLocationManager()
     var annotations: [MKPointAnnotation] = [] {
         didSet {
@@ -22,34 +28,55 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
         }
     }
     
-    
-    @IBAction func tryCatch(sender: AnyObject) {
-//        let parameters = ["gameID": game!.game!["gameID"]!, "playerObjID": game!.player!.objectId!]
-//        PFCloud.callFunctionInBackground("tryCatch", withParameters: parameters) { (object, error) -> Void in
-//            self.game?.game = object as? PFObject
-//            let isPlaying = self.game?.game!["isPlaying"] as! Bool
-//            if !isPlaying {
-//                self.navigationController?.popViewControllerAnimated(true)
-//            }
-//        }
+    var audioPlayer: AVAudioPlayer?
+    lazy var recorder: AVAudioRecorder = {
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let docsDir = dirPaths[0] as! String
+        let soundFilePath =
+        docsDir.stringByAppendingPathComponent("voice.m4a")
+        let soundFileURL = NSURL(fileURLWithPath: soundFilePath)
         
-    }
+        let audioSession = AVAudioSession.sharedInstance()
+        audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+        
+        let recordSetting: [NSObject : AnyObject] = [
+            AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVSampleRateKey: 44100.0,
+            AVNumberOfChannelsKey: 2
+        ]
+        
+        let recorder = AVAudioRecorder(URL: soundFileURL, settings: recordSetting, error: nil)
+        recorder.delegate = self
+        recorder.meteringEnabled = true
+        recorder.prepareToRecord()
+        
+        return recorder
+    }()
+    
+    // MARK: View
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        map.showsUserLocation = true
+        // Setup map
+
         map.userTrackingMode = .Follow
-        map.scrollEnabled = false
+        
+        // Setup UI
+        
+//        talkButton.hidden = player!.isPrey
+        catchButton.hidden = player!.isPrey
+    
+        // other
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-
         UIApplication.sharedApplication().idleTimerDisabled = true
-        
-        let timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updateGame", userInfo: nil, repeats: true)
-        timer.fire()
+        timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updateGame", userInfo: nil, repeats: true)
+        timer?.fire()
     }
 
+    // MARK: Methods
+    
     func updateGame() {
         
         player?.location = locationManager.location.coordinate
@@ -65,11 +92,17 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
             let playerLocation = CLLocation(latitude: player!.location.latitude, longitude: player!.location.longitude)
             
             let distance = preyLocation.distanceFromLocation(playerLocation)
-            self.title = "\(floor(distance))m"
+                        
+            if player!.isPrey {
+                self.title = "You are the prey"
+            } else {
+                self.title = "\(floor(distance))m"
+            }
             
-            println("Players count:\(game?.players.count)")
-            println("Prey:\(prey)")
-            println("Annotations count \(annotations?.count)")
+            if !game!.state!.isPlaying {
+                self.timer?.invalidate()
+                self.performSegueWithIdentifier("GameOver", sender: nil)
+            }
             
         }
     }
@@ -81,5 +114,49 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
         annotation.coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
             
         return annotation
+    }
+    
+    // MARK: User interaction
+    
+    @IBAction func tryCatch(sender: AnyObject) {
+        GameStore.tryCatch(game!, player: player!) { (game, error) -> () in
+            
+            if let game = game {
+                self.timer?.invalidate()
+                self.performSegueWithIdentifier("GameOver", sender: nil)
+            }
+            
+            if let error = error {
+                
+            }
+        }
+        
+    }
+    
+    @IBAction func startRecording(sender: UIButton) {
+        let audioSession = AVAudioSession.sharedInstance()
+        audioSession.setActive(true, error: nil)
+        recorder.record()
+    }
+    
+    @IBAction func stopRecording(sender: UIButton) {
+        recorder.stop()
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        audioSession.setActive(false, error: nil)
+    }
+    
+    // MARK: AVAudioRecorderDelegate
+    
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
+        audioPlayer = AVAudioPlayer(contentsOfURL: recorder.url, error: nil)
+        
+        let soundData = NSData(contentsOfURL: recorder.url)!
+        println("\(soundData.si)")
+        game?.parseGame["sound"] = soundData
+        game?.parseGame.saveInBackgroundWithBlock { (suc, error) -> Void in
+            
+        }
+        audioPlayer?.play()
     }
 }
