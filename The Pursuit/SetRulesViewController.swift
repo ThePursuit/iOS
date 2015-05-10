@@ -29,31 +29,35 @@ class SetRulesViewController: GameDataViewController {
     
     @IBAction func setRulesAndGoToLobby(sender: AnyObject) {
         
-        let radius = Int(round(radiusSlider.value))
-        let catch = Int(round(catchRadiusSlider.value))
-        let time = Int(round(timeSlider.value))
-        
-        startLoadingViewWithText("Setting up rules")
-        GameStore.setRulesForGame(game!, radius: radius, catchRadius: catch, timeDuration: time) { (game, error) -> () in
-            if let game = game {
-                
-                let name = self.nameTextView.text ?? "No name"
-                
-                GameStore.changeNameForPlayer(self.player!, name: name) { (player, error) -> () in
-                    if let player = player {
-                        self.player = player
-                        self.game = game
-                        self.performSegueWithIdentifier("GoToLobby", sender: nil)
+        if nameTextView.text.isEmpty {
+            showMessage("You need to enter a name")
+        } else {
+            let radius = Int(round(radiusSlider.value))
+            let catch = Int(round(catchRadiusSlider.value))
+            let time = Int(round(timeSlider.value))
+            
+            startLoadingViewWithText("Setting up rules")
+            GameStore.setRulesForGame(game!, radius: radius, catchRadius: catch, timeDuration: time) { (game, error) -> () in
+                if let game = game {
+                    
+                    let name = self.nameTextView.text ?? "No name"
+                    
+                    GameStore.changeNameForPlayer(self.player!, name: name) { (player, error) -> () in
+                        if let player = player {
+                            self.player = player
+                            self.game = game
+                            self.performSegueWithIdentifier("GoToLobby", sender: nil)
+                        }
+                        if let error = error {
+                            println("\(error.localizedDescription)")
+                        }
+                        self.stopLoadingView()
                     }
-                    if let error = error {
-                        println("\(error.localizedDescription)")
-                    }
+                }
+                if let error = error {
+                    println("\(error.localizedDescription)")
                     self.stopLoadingView()
                 }
-            }
-            if let error = error {
-                println("\(error.localizedDescription)")
-                self.stopLoadingView()
             }
         }
     }

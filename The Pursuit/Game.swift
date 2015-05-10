@@ -16,6 +16,10 @@ struct Game {
     var state: State?
     var rules: Rules?
     
+    var prey: Player? {
+        return players.filter { $0.isPrey }.first
+    }
+    
     
     init(game: PFObject, players: [PFObject], rules: PFObject?, state: PFObject?) {
         parseGame = game

@@ -30,7 +30,6 @@ class JoinGameViewController: GameDataViewController {
                     if let error = error {
                         println("\(error.localizedDescription)")
                     }
-                    self.stopLoadingView()
                 }
             }
         } else {
@@ -48,6 +47,7 @@ class JoinGameViewController: GameDataViewController {
             if let error = error {
                 println("\(error.localizedDescription)")
             }
+            self.stopLoadingView()
         }
     }
 }
