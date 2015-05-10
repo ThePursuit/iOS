@@ -587,19 +587,19 @@
                                 <exclude reference="4dH-lw-Fry"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="GKq-Sc-gUy"/>
-                                <exclude reference="QX9-gn-jjb"/>
-                                <exclude reference="i7O-1w-0Tw"/>
-                                <exclude reference="Aop-NO-8nK"/>
-                                <exclude reference="PBD-3u-u76"/>
-                                <exclude reference="c54-Ui-cV6"/>
+                                <exclude reference="FEw-4v-8VS"/>
+                                <exclude reference="S4W-Ta-Z3j"/>
+                                <exclude reference="TeE-5v-koJ"/>
                                 <exclude reference="31W-AB-Izh"/>
                                 <exclude reference="KQc-9r-O84"/>
                                 <exclude reference="LZ9-7w-RT4"/>
                                 <exclude reference="wky-RW-rUr"/>
-                                <exclude reference="FEw-4v-8VS"/>
-                                <exclude reference="S4W-Ta-Z3j"/>
-                                <exclude reference="TeE-5v-koJ"/>
+                                <exclude reference="Aop-NO-8nK"/>
+                                <exclude reference="PBD-3u-u76"/>
+                                <exclude reference="c54-Ui-cV6"/>
+                                <exclude reference="GKq-Sc-gUy"/>
+                                <exclude reference="QX9-gn-jjb"/>
+                                <exclude reference="i7O-1w-0Tw"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -609,19 +609,19 @@
                                 <include reference="4dH-lw-Fry"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="GKq-Sc-gUy"/>
-                                <include reference="QX9-gn-jjb"/>
-                                <include reference="i7O-1w-0Tw"/>
-                                <include reference="Aop-NO-8nK"/>
-                                <include reference="PBD-3u-u76"/>
-                                <exclude reference="c54-Ui-cV6"/>
+                                <include reference="FEw-4v-8VS"/>
+                                <include reference="S4W-Ta-Z3j"/>
+                                <include reference="TeE-5v-koJ"/>
                                 <include reference="31W-AB-Izh"/>
                                 <include reference="KQc-9r-O84"/>
                                 <include reference="LZ9-7w-RT4"/>
                                 <include reference="wky-RW-rUr"/>
-                                <include reference="FEw-4v-8VS"/>
-                                <include reference="S4W-Ta-Z3j"/>
-                                <include reference="TeE-5v-koJ"/>
+                                <include reference="Aop-NO-8nK"/>
+                                <include reference="PBD-3u-u76"/>
+                                <exclude reference="c54-Ui-cV6"/>
+                                <include reference="GKq-Sc-gUy"/>
+                                <include reference="QX9-gn-jjb"/>
+                                <include reference="i7O-1w-0Tw"/>
                             </mask>
                         </variation>
                     </view>
@@ -653,6 +653,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0RR-d8-ry3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ued-h2-Uof">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You won or lost, who know?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhZ-5c-p68">

@@ -12,6 +12,7 @@
 		CC049BE31AC888BB00F0DB81 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC049BE21AC888BB00F0DB81 /* Game.swift */; };
 		CC3C01671A7BABF10071FAEF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C01661A7BABF10071FAEF /* MapKit.framework */; };
 		CC3FC5801AC2C7AA00360E0F /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3FC57F1AC2C7AA00360E0F /* LobbyViewController.swift */; };
+		CC810CF11AFCF2C7001594CC /* TalkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC810CF01AFCF2C7001594CC /* TalkHandler.swift */; };
 		CC98FD3D1AE902CF00741D63 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC98FD3C1AE902CF00741D63 /* Player.swift */; };
 		CC98FD3F1AE902F000741D63 /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC98FD3E1AE902F000741D63 /* GameStore.swift */; };
 		CC98FD411AE903DD00741D63 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC98FD401AE903DD00741D63 /* Rules.swift */; };
@@ -35,6 +36,7 @@
 		CC3C01661A7BABF10071FAEF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CC3FC57F1AC2C7AA00360E0F /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
 		CC58550B1AEB74F9000CD869 /* ThePursuit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ThePursuit-Bridging-Header.h"; path = "../ThePursuit-Bridging-Header.h"; sourceTree = "<group>"; };
+		CC810CF01AFCF2C7001594CC /* TalkHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkHandler.swift; sourceTree = "<group>"; };
 		CC98FD3C1AE902CF00741D63 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CC98FD3E1AE902F000741D63 /* GameStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		CC98FD401AE903DD00741D63 /* Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				CC98FD421AE903ED00741D63 /* State.swift */,
 				CC98FD3C1AE902CF00741D63 /* Player.swift */,
 				CC98FD3E1AE902F000741D63 /* GameStore.swift */,
+				CC810CF01AFCF2C7001594CC /* TalkHandler.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				CCEDF1511AD558030086C85F /* GameDataViewController.swift in Sources */,
 				CC98FD3F1AE902F000741D63 /* GameStore.swift in Sources */,
 				CC049BE31AC888BB00F0DB81 /* Game.swift in Sources */,
+				CC810CF11AFCF2C7001594CC /* TalkHandler.swift in Sources */,
 				CCE948081A7647C200F915CA /* AppDelegate.swift in Sources */,
 				CCA90A411AC0ABA000139469 /* SetRulesViewController.swift in Sources */,
 				CCA9E59E1AC5412C00799DBD /* GameViewController.swift in Sources */,

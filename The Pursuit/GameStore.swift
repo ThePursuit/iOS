@@ -200,8 +200,8 @@ class GameStore {
         let parameters: [String: AnyObject] = [
             "gameID": game.ID,
             "playerObjID": player.objectID,
-            "longitude": player.location.longitude,
-            "latitude": player.location.latitude
+            "longitude": player.coordinate.longitude,
+            "latitude": player.coordinate.latitude
         ]
         
         PFCloud.callFunctionInBackground("updateGame", withParameters: parameters) { (object, error) -> Void in
