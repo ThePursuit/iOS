@@ -27,7 +27,7 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
         }
         
         gameCodeLabel.text = "Game code: \(game!.ID)"
-        timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "checkForNewPlayers", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "checkForNewPlayers", userInfo: nil, repeats: true)
         timer?.fire()
         
         if let isCreator = player?.isCreator where !isCreator {
@@ -110,6 +110,7 @@ class LobbyViewController: GameDataViewController, UITableViewDataSource, UITabl
     // MARK: Navigation
     
     @IBAction func unwindToLobbyViewController(segue: UIStoryboardSegue) {
+        
     }
     
 }

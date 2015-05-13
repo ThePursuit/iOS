@@ -18,9 +18,11 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var catchButton: UIButton!
     @IBOutlet weak var talkButton: UIButton!
+    @IBOutlet weak var timerBar: UIProgressView!
     
     let talkHandler = TalkHandler()
-    var timer: NSTimer?
+    var updateGameTimer: NSTimer?
+    var updateTimeTimer: NSTimer?
     let locationManager = CLLocationManager()
     var annotations: [MKPointAnnotation] = [] {
         didSet {
@@ -34,50 +36,79 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateTimeTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateProgressbar", userInfo: nil, repeats: true)
+        
         // Setup map
         map.userTrackingMode = .Follow
-        
-        // Setup UI
-        talkButton.hidden = player!.isPrey
-        catchButton.hidden = player!.isPrey
     
         // other
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         UIApplication.sharedApplication().idleTimerDisabled = true
-        timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updateGame", userInfo: nil, repeats: true)
-        timer?.fire()
+        updateGameTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updateGame", userInfo: nil, repeats: true)
+        updateGameTimer?.fire()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Setup UI
+        talkButton.hidden = player!.isPrey
+        catchButton.hidden = player!.isPrey
     }
 
     // MARK: Methods
     
+    func updateProgressbar() {
+        
+        if let state = self.game!.state {
+            let startTime = state.startTime
+            let endTime = state.endTime
+            let progress = Float(1.0 - endTime.timeIntervalSinceNow/endTime.timeIntervalSinceDate(startTime))
+            
+            timerBar.progress = progress
+            
+            if progress >= 1.0 {
+                endGame()
+            }
+        }
+    }
+    
+    func endGame() {
+        
+        self.updateGameTimer?.invalidate()
+        self.updateTimeTimer?.invalidate()
+        
+        self.performSegueWithIdentifier("GameOver", sender: nil)
+    }
+    
     func updateGame() {
         
         player?.coordinate = locationManager.location.coordinate
-        GameStore.updateGame(game!, withPlayer: player!) { (game, player, error) -> () in
-            self.game = game
-            self.player = player
-            
-            let newAnnotations = self.game?.players.filter { self.player == $0 && !$0.isPrey }.map(self.makeAnnotations)
-            if newAnnotations! != self.annotations {
-                self.annotations = newAnnotations!
-            } else {
+
+        if let player = player, game = game {
+            GameStore.updateGame(game, withPlayer: player) { (game, player, error) -> () in
+                self.game = game
+                self.player = player
+                
+                let newAnnotations = game!.players.filter { self.player == $0 && $0.isPrey }.map(self.makeAnnotations)
+                self.annotations = newAnnotations
+                
+                let distance = self.game?.prey?.distanceToPlayer(player!)
+                
+                if let player = player where player.isPrey {
+                    self.title = "You are the prey"
+                } else {
+                    self.title = "\(distance ?? 0)m"
+                }
+                
+                if let isPlaying = game?.state?.isPlaying where !isPlaying {
+                    self.endGame()
+                }
                 
             }
-
-            let distance = self.game!.prey?.distanceToPlayer(player!)
-                        
-            if player!.isPrey {
-                self.title = "You are the prey"
-            } else {
-                self.title = "\(distance)m"
-            }
-            
-            if !game!.state!.isPlaying {
-                self.timer?.invalidate()
-                self.performSegueWithIdentifier("GameOver", sender: nil)
-            }
-            
         }
+        
+
     }
     
     func makeAnnotations(player:Player) -> MKPointAnnotation {
@@ -92,15 +123,15 @@ class GameViewController: GameDataViewController, MKMapViewDelegate {
     // MARK: User interaction
     
     @IBAction func tryCatch(sender: AnyObject) {
+        self.updateGameTimer?.invalidate()
         GameStore.tryCatch(game!, player: player!) { (game, error) -> () in
             
             if let game = game {
-                self.timer?.invalidate()
-                self.performSegueWithIdentifier("GameOver", sender: nil)
+                self.endGame()
             }
             
             if let error = error {
-                
+                self.updateGameTimer?.fire()
             }
         }
         

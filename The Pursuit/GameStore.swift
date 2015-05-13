@@ -229,7 +229,7 @@ class GameStore {
             "playerObjID": player.objectID
         ]
         
-        PFCloud.callFunctionInBackground("updateGame", withParameters: parameters) { (object, error) -> Void in
+        PFCloud.callFunctionInBackground("tryCatch", withParameters: parameters) { (object, error) -> Void in
             
             if let gameObject = object as? PFObject {
                 GameStore.getStateRulesAndPlayersFromGame(gameObject) { (state, rules, players, error) -> () in
